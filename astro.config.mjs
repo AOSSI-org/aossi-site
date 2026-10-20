@@ -12,4 +12,6 @@ export default defineConfig({
 	markdown: { smartypants: false },
 	image: { responsiveStyles: false },
 	devToolbar: { enabled: false },
+	// Never inline fonts or images as data: URIs (keeps the CSP strict: font-src 'self').
+	vite: { build: { assetsInlineLimit: 0 } },
 });
