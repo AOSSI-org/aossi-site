@@ -32,3 +32,7 @@ No AOSSI email address is published yet, so the Contact page links to the form a
 ## Licenses
 
 Fonts: Manrope and JetBrains Mono (SIL OFL 1.1), self-hosted via Fontsource. Icons: Lucide (ISC). Photos: NASA (public domain; use does not imply endorsement).
+
+## Preview deploy (Hostinger)
+
+The preview lives at https://preview.aossi.org (its own static website on the Hostinger plan, noindex). To redeploy: `npm run build:preview`, zip the *contents* of `dist/` (including `.htaccess`), upload it to the site root and run Hostinger's static-archive deploy, then **clear the website cache** so the CDN doesn't keep serving old HTML that points at deleted hashed CSS files. Details in `.hostinger/site.json`.

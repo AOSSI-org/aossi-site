@@ -1,0 +1,15 @@
+{
+  "preview": {
+    "domain": "preview.aossi.org",
+    "username": "u155242797",
+    "order_id": 1010185726,
+    "type": "static",
+    "build": "npm run build:preview",
+    "output": "dist",
+    "noindex": true
+  },
+  "production": {
+    "domain": "aossi.org",
+    "note": "Not deployed. aossi.org and aossi.info are still the Hostinger Builder sites."
+  }
+}
