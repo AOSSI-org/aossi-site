@@ -1,0 +1,51 @@
+/* AOSSI design tokens. Direction A, "Flight Manual".
+   Contrast (WCAG relative luminance): text on ink 17.35:1, muted on ink 8.64:1,
+   accent on ink 7.50:1, on-accent on accent 7.34:1, field-border on ink 3.90:1. */
+:root {
+	color-scheme: dark;
+
+	--ink: #0c0d10;
+	--surface: #15171c;
+	--raised: #1d2027;
+	--hairline: #2a2e37;
+	--field-border: #6b7079;
+	--text: #f3f2ee;
+	--muted: #a9adb6;
+	--accent: #ff7a3d;
+	--accent-hover: #ff9461;
+	--accent-active: #e86a30;
+	--on-accent: #1a0d05;
+	--accent-tint: rgb(255 122 61 / 0.14);
+	--selection: rgb(255 122 61 / 0.32);
+	--ok: #7fd1a8;
+	--sky: #8fb4e8;
+
+	--font-sans: 'Manrope Variable', 'Manrope Fallback', system-ui, sans-serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+	/* Major third (1.25). */
+	--step--1: 0.875rem;
+	--step-0: 1.125rem;
+	--step-1: 1.25rem;
+	--step-2: 1.5rem;
+	--step-3: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem);
+	--step-display: clamp(2.5rem, 5vw + 1rem, 5rem);
+
+	--space-2xs: 0.25rem;
+	--space-xs: 0.5rem;
+	--space-s: 0.75rem;
+	--space-m: 1rem;
+	--space-l: 1.5rem;
+	--space-xl: 2.5rem;
+	--space-2xl: clamp(3rem, 2rem + 4vw, 5rem);
+	--space-3xl: clamp(4rem, 2.5rem + 6vw, 8rem);
+
+	--measure: 68ch;
+	--container: 75rem;
+	--gutter: clamp(1.25rem, 0.5rem + 3vw, 3rem);
+	--radius: 2px;
+	--radius-m: 4px;
+
+	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+	--dur-fast: 120ms;
+}

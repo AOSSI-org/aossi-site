@@ -1,0 +1,107 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import cubesat from '../assets/cubesat-release.jpg';
+
+const different = ['Open licenses', 'Contractors paid only by a share of net revenue, if there is any', 'Export-control review before every release'];
+const principles = [
+	'Participation is voluntary. Nobody gets drafted.',
+	'Leading means more work, not more rank. Everyone is a peer.',
+	'Experiment is king: no experiment, no project.',
+	'Open by default.',
+];
+const family = [
+	{ name: 'Regardless Industries', body: 'the parent company. It will own and run the ventures.' },
+	{ name: 'AOSRI (Acme Open-Source Research Initiative)', body: 'its job is to replicate research and check it before AOSSI builds on it.' },
+	{ name: 'acme.academy', body: 'planned. Courses and certificates of understanding for people without degrees.' },
+];
+---
+<Base page="about">
+	<PageHero
+		title="Make space hardware cheaper. Make open contribution a real career."
+		lead="AOSSI will publish its designs openly, so space hardware gets cheaper and easier to reach. It will pay contributors a share of net revenue, if there is any, so contributing can be a real career. No equity. No gatekeeping. No cost-plus incentives."
+	>
+		<figure class="photo" slot="media">
+			<Picture
+				src={cubesat}
+				alt="A small CubeSat drifting in black space just after release from the International Space Station, with the edge of a solar array in the corner."
+				widths={[400, 640, 900]}
+				sizes="(min-width: 60rem) 34vw, 100vw"
+				formats={['avif', 'webp']}
+					fallbackFormat="jpg"
+				loading="eager"
+				fetchpriority="high"
+				decoding="async"
+				quality={62}
+			/>
+			<figcaption>A CubeSat released from the International Space Station, May 2017 · ISS051-E-049985 · Credit: NASA</figcaption>
+		</figure>
+	</PageHero>
+
+	<section class="section" aria-labelledby="different">
+		<div class="container grid two-col">
+			<div class="col-a">
+				<h2 id="different" class="statement">Open designs exist. Revenue contracts exist. The combination is rare: a commons that grows, and pay worth a top builder's time.</h2>
+			</div>
+			<ul class="check-list col-b" role="list">
+				{different.map((d) => <li><Icon name="circle-dot" /><span>{d}</span></li>)}
+			</ul>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="principles">
+		<div class="container grid two-col">
+			<div class="col-a"><h2 id="principles">Principles</h2></div>
+			<ol class="numbered col-b" role="list">
+				{principles.map((p, i) => <li><span class="mono n">{String(i + 1).padStart(2, '0')}</span><p>{p}</p></li>)}
+			</ol>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="family">
+		<div class="container grid two-col">
+			<div class="col-a"><h2 id="family">The family</h2></div>
+			<dl class="family col-b">
+				{family.map((f) => (
+					<div><dt>{f.name}<span class="colon">:</span></dt><dd>{f.body}</dd></div>
+				))}
+			</dl>
+		</div>
+	</section>
+
+	<CtaBand heading="Build space hardware in the open. Paid only from net revenue, if it earns.">
+		<a class="btn btn-primary" href="/sponsor/">Sponsor</a>
+		<a class="btn btn-secondary" href="/contribute/">Contribute</a>
+	</CtaBand>
+</Base>
+
+<style>
+	.two-col { row-gap: var(--space-l); }
+	.col-a, .col-b { grid-column: 1 / -1; }
+	.statement { font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem); font-weight: 650; line-height: 1.25; max-width: 30ch; }
+	.check-list, .numbered { list-style: none; padding: 0; }
+	.check-list li, .numbered li {
+		display: grid;
+		grid-template-columns: 2.5rem 1fr;
+		align-items: baseline;
+		padding-block: var(--space-m);
+		border-bottom: 1px solid var(--hairline);
+	}
+	.check-list li:first-child, .numbered li:first-child { border-top: 1px solid var(--field-border); }
+	.check-list :global(svg) { width: 18px; height: 18px; color: var(--accent); translate: 0 3px; }
+	.numbered .n { color: var(--accent); }
+	.numbered p { font-size: var(--step-1); font-weight: 500; }
+	.family { display: grid; gap: 0; }
+	.family div { padding-block: var(--space-l); border-bottom: 1px solid var(--hairline); }
+	.family div:first-child { border-top: 1px solid var(--field-border); }
+	.family dt { font-size: var(--step-2); font-weight: 700; letter-spacing: -0.015em; }
+	.family .colon { color: var(--muted); }
+	.family dd { margin: var(--space-2xs) 0 0; color: var(--muted); max-width: 56ch; }
+	@media (min-width: 60rem) {
+		.col-a { grid-column: 1 / 6; }
+		.col-b { grid-column: 7 / -1; }
+	}
+</style>

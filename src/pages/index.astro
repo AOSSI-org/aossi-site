@@ -1,0 +1,193 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import WaterShield from '../components/WaterShield.astro';
+import sunrise from '../assets/sunrise-brazil.jpg';
+
+const principles = [
+	{ n: '01', icon: 'lock-open', title: 'Open by default', body: 'Designs, CAD, software, data and documentation will be published openly. Anyone can use them, including commercially.' },
+	{ n: '02', icon: 'hand-coins', title: 'Paid only from revenue', body: 'Builders will be independent contractors, paid only by a share of net revenue, if there is any. If nothing earns, nothing is owed.' },
+	{ n: '03', icon: 'scale', title: 'No equity sold', body: 'No investors to answer to. AOSSI will compete on execution, quality and its name. Not on patents.' },
+];
+const priorities = ['Durable', 'Repairable', 'Modular', 'Backwards Compatible', 'Scalable', 'Non-Exotic'];
+---
+<Base page="home">
+	<section class="hero" aria-labelledby="hero-title">
+		<div class="container hero-grid">
+			<div class="hero-text">
+				<h1 id="hero-title">The designs are free. The builders shouldn't be.</h1>
+				<p class="lead">AOSSI will publish its space hardware designs for anyone to use. The people who build them will be paid only by a share of net revenue, if there is any.</p>
+				<div class="btn-row">
+					<a class="btn btn-primary" href="/contribute/">Start contributing <Icon name="arrow-right" /></a>
+					<a class="btn btn-secondary" href="/sponsor/">Fund the work</a>
+				</div>
+			</div>
+			<figure class="photo hero-photo">
+				<Picture
+					src={sunrise}
+					alt="Orbital sunrise over Earth's horizon, with city lights scattered across Brazil below, seen from the International Space Station."
+					widths={[400, 600, 800, 1100]}
+					sizes="(min-width: 60rem) 40vw, 100vw"
+					formats={['avif', 'webp']}
+					fallbackFormat="jpg"
+					loading="eager"
+					fetchpriority="high"
+					decoding="async"
+					quality={62}
+				/>
+				<figcaption>Orbital sunrise over Brazil · ISS072-E-340644 · Credit: NASA</figcaption>
+			</figure>
+		</div>
+		<div class="container">
+			<p class="status-strip mono">
+				<span><span class="k">Status:</span> forming</span>
+				<span><span class="k">Designs:</span> open by default</span>
+				<span><span class="k">Pay:</span> share of net revenue, if any</span>
+			</p>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="problem">
+		<div class="container">
+			<div class="section-head">
+				<h2 id="problem">Space hardware is expensive for reasons that aren't physics.</h2>
+				<p class="body-muted">Designs are proprietary, so every program re-engineers parts someone already solved. Contractors are often paid for effort, not results. Skilled machinists, mechanics and independent engineers have no way in. Open-source hardware projects rarely have a business model, so the best builders can't afford to work on them.</p>
+			</div>
+			<ol class="principles" role="list">
+				{principles.map((p) => (
+					<li>
+						<div class="principle-top">
+							<Icon name={p.icon} class="principle-icon" />
+							<span class="mono num">{p.n}</span>
+						</div>
+						<h3>{p.title}</h3>
+						<p>{p.body}</p>
+					</li>
+				))}
+			</ol>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="priorities">
+		<div class="container grid priorities-grid">
+			<div class="priorities-head">
+				<h2 id="priorities">Every AOSSI design is judged in this order.</h2>
+			</div>
+			<ol class="spec-table" role="list">
+				{priorities.map((name, i) => (
+					<li><span class="mono rank">{String(i + 1).padStart(2, '0')}</span><span class="name">{name}</span></li>
+				))}
+			</ol>
+			<p class="tagline mono">THE LINUX OF SPACE: MODULAR STANDARDS. NEW CAPABILITIES. OLD PARTS STILL FIT.</p>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="experiment">
+		<div class="container grid experiment-grid">
+			<div class="experiment-text prose">
+				<h2 id="experiment">Proposed first experiment: test water as shielding.</h2>
+				<p>An open-source CubeSat that would measure radiation dose behind a water jacket and behind aluminum, side by side. AOSSI habitat design assumes water tanks double as shielding. This experiment would test that assumption. <span class="chip" data-status="proposed">Status: proposed, not started.</span></p>
+			</div>
+			<div class="experiment-art"><WaterShield /></div>
+		</div>
+	</section>
+
+	<section class="section academy" aria-labelledby="academy">
+		<div class="container academy-inner">
+			<h2 id="academy">No degree? Fine.</h2>
+			<p>acme.academy is planned to issue certificates of understanding that qualify you to work on AOSSI projects.</p>
+			<a class="btn btn-secondary" href="/contact/">Tell me when</a>
+		</div>
+	</section>
+
+	<CtaBand heading="Build space hardware in the open. Paid only from net revenue, if it earns.">
+		<a class="btn btn-primary" href="/sponsor/">Sponsor</a>
+		<a class="btn btn-secondary" href="/contribute/">Contribute</a>
+	</CtaBand>
+</Base>
+
+<style>
+	.hero { padding-block: var(--space-xl) 0; }
+	.hero-grid { display: grid; gap: var(--space-xl); align-items: center; }
+	.hero-text > * + * { margin-top: var(--space-l); }
+	.hero-text .btn-row { margin-top: var(--space-xl); }
+	.hero h1 { max-width: 14ch; font-size: clamp(2.5rem, 3.2vw + 1.1rem, 4.25rem); }
+	.hero-photo img { aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 0; }
+	@media (min-width: 60rem) { .hero-photo img { aspect-ratio: 4 / 5; } }
+
+	/* The one authored moment: the photo opens along the horizon line, top down. */
+	@media (prefers-reduced-motion: no-preference) {
+		.hero-photo img { animation: horizon-wipe 700ms var(--ease-out) 80ms backwards; }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.hero-photo img { animation: fade-in 150ms linear backwards; }
+	}
+	@keyframes horizon-wipe {
+		from { clip-path: inset(0 0 88% 0 round 2px); }
+		to { clip-path: inset(0 0 0 0 round 2px); }
+	}
+	@keyframes fade-in { from { opacity: 0.6; } }
+
+	.status-strip {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-xs) var(--space-xl);
+		margin-top: var(--space-xl);
+		padding-block: var(--space-m);
+		border-block: 1px solid var(--hairline);
+		color: var(--text);
+	}
+	.status-strip .k { color: var(--muted); }
+
+	.body-muted { color: var(--muted); }
+
+	.principles { list-style: none; padding: 0; display: grid; gap: var(--space-xl); }
+	.principles li { padding-top: var(--space-l); border-top: 1px solid var(--field-border); }
+	.principles li > * + * { margin-top: var(--space-s); }
+	.principle-top { display: flex; align-items: center; justify-content: space-between; }
+	.principles :global(.principle-icon) { width: 28px; height: 28px; color: var(--accent); }
+	.principles .num { color: var(--muted); }
+	.principles p { color: var(--muted); max-width: 40ch; }
+	.principles li:first-child h3 { font-size: 1.75rem; }
+
+	.priorities-grid { row-gap: var(--space-xl); }
+	.priorities-head, .spec-table, .tagline { grid-column: 1 / -1; }
+	.spec-table { list-style: none; padding: 0; border-top: 1px solid var(--field-border); counter-reset: none; }
+	.spec-table li {
+		display: grid;
+		grid-template-columns: 4rem 1fr;
+		align-items: baseline;
+		min-height: 4rem;
+		padding-block: var(--space-m);
+		border-bottom: 1px solid var(--hairline);
+	}
+	.spec-table .rank { color: var(--accent); font-weight: 500; }
+	.spec-table .name { font-size: var(--step-2); font-weight: 650; letter-spacing: -0.015em; }
+	.spec-table li:first-child .name { font-size: var(--step-3); font-weight: 750; }
+	.tagline { color: var(--muted); letter-spacing: 0.02em; max-width: 60ch; }
+
+	.experiment-grid { row-gap: var(--space-xl); align-items: center; }
+	.experiment-text, .experiment-art { grid-column: 1 / -1; }
+	.experiment-text .chip { margin-top: var(--space-xs); }
+
+	.academy { background: var(--surface); }
+	.academy-inner { display: grid; gap: var(--space-m); justify-items: start; }
+	.academy-inner p { color: var(--muted); max-width: 52ch; }
+	.academy-inner .btn { margin-top: var(--space-xs); }
+
+	@media (min-width: 48rem) {
+		.principles { grid-template-columns: 1.3fr 1fr 1fr; gap: var(--space-xl); }
+	}
+	@media (min-width: 60rem) {
+		.hero-grid { grid-template-columns: 7fr 5fr; gap: var(--space-2xl); }
+		.priorities-head { grid-column: 1 / 5; }
+		.spec-table { grid-column: 6 / -1; }
+		.tagline { grid-column: 6 / -1; }
+		.experiment-text { grid-column: 1 / 6; }
+		.experiment-art { grid-column: 7 / -1; }
+		.academy-inner { grid-template-columns: auto 1fr auto; align-items: center; column-gap: var(--space-xl); }
+		.academy-inner .btn { margin-top: 0; }
+	}
+</style>

@@ -1,0 +1,24 @@
+---
+// Closing call to action: dark text on orange (7.34:1).
+interface Props { heading: string; id?: string }
+const { heading, id = 'cta-heading' } = Astro.props;
+---
+<section class="cta-band" aria-labelledby={id}>
+	<div class="container cta-inner">
+		<h2 id={id}>{heading}</h2>
+		<div class="btn-row"><slot /></div>
+	</div>
+</section>
+
+<style>
+	.cta-band { background: var(--accent); color: var(--on-accent); padding-block: var(--space-2xl); }
+	.cta-inner { display: grid; gap: var(--space-l); align-items: end; }
+	h2 { max-width: 22ch; font-size: clamp(2rem, 1.3rem + 2.6vw, 3.25rem); font-weight: 800; letter-spacing: -0.03em; }
+	.cta-band :global(.btn) { --btn-fg: var(--on-accent); }
+	.cta-band :global(.btn-primary) { --btn-bg: var(--on-accent); --btn-fg: var(--text); --btn-border: var(--on-accent); }
+	.cta-band :global(.btn-primary:hover) { --btn-bg: var(--ink); --btn-border: var(--ink); }
+	.cta-band :global(.btn-secondary) { --btn-border: var(--on-accent); }
+	.cta-band :global(.btn-secondary:hover) { --btn-bg: rgb(26 13 5 / 0.1); --btn-border: var(--on-accent); }
+	.cta-band :global(:focus-visible) { outline-color: var(--on-accent); }
+	@media (min-width: 60rem) { .cta-inner { grid-template-columns: 1fr auto; } }
+</style>

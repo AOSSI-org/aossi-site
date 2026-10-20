@@ -1,0 +1,106 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+
+const steps = [
+	{ title: 'Pick a project.', body: "Open work will go in AOSSI's public repository once it exists." },
+	{ title: 'Read the contributor terms.', body: 'Licenses, the contractor agreement, the export-control policy. All of it, ideally.' },
+	{ title: 'Do the work.', body: 'Design, code, test, document. The repository history will record who did what.' },
+	{ title: 'Get credited.', body: "If you're on a product's team and it earns, you're paid a share of its net revenue. If nothing earns, nothing is owed." },
+];
+---
+<Base page="contribute">
+	<PageHero
+		title="Bring what you can build."
+		lead="Engineers, machinists, A&P mechanics, programmers, technical writers, self-taught builders. A degree is optional. The work isn't."
+	/>
+
+	<section class="section" aria-labelledby="how">
+		<div class="container grid two-col">
+			<div class="col-a"><h2 id="how">How it works</h2></div>
+			<ol class="steps col-b" role="list">
+				{steps.map((s, i) => (
+					<li>
+						<span class="step-n mono" aria-hidden="true">{i + 1}</span>
+						<div><h3>{s.title}</h3><p>{s.body}</p></div>
+					</li>
+				))}
+			</ol>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="paid">
+		<div class="container grid two-col">
+			<div class="col-a"><h2 id="paid">How builders are paid</h2></div>
+			<div class="col-b prose">
+				<p>Contributors will be independent contractors. The only pay is a share of a product's net revenue, for those on its team, if there is any. If nothing earns, nothing is owed. The share is a claim to net revenue, not ownership of the product or its designs, which stay open under their licenses. The terms are still in progress, pending attorney review.</p>
+				<p class="callout">These terms are drafts, pending attorney review. Final terms will be published before anyone signs a contributor agreement.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="export">
+		<div class="container grid two-col">
+			<div class="col-a"><h2 id="export">Export control</h2></div>
+			<div class="col-b prose">
+				<p>Space hardware can fall under ITAR and EAR export rules. AOSSI plans to review every release before it goes out, and plans to publish nothing controlled without authorization.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="academy">
+		<div class="container grid two-col">
+			<div class="col-a"><h2 id="academy">No degree? Start at acme.academy</h2></div>
+			<div class="col-b prose">
+				<p>Planned: certificates of understanding, so anyone can qualify to work on AOSSI projects. Planned means not yet.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="closing" aria-labelledby="ready">
+		<div class="container closing-inner">
+			<h2 id="ready">Ready? Tell AOSSI what you build.</h2>
+			<a class="btn btn-primary" href="/contact/">Contact AOSSI <Icon name="arrow-right" /></a>
+		</div>
+	</section>
+</Base>
+
+<style>
+	.two-col { row-gap: var(--space-l); }
+	.col-a, .col-b { grid-column: 1 / -1; }
+	.col-b p { color: var(--muted); }
+	.col-b .callout { color: var(--text); }
+	.steps { list-style: none; padding: 0; position: relative; }
+	.steps li { display: grid; grid-template-columns: 3rem 1fr; gap: var(--space-m); padding-bottom: var(--space-xl); position: relative; }
+	.steps li:not(:last-child)::before {
+		content: '';
+		position: absolute;
+		left: calc(1.25rem - 0.5px);
+		top: 2.75rem;
+		bottom: 0.25rem;
+		width: 1px;
+		background: var(--field-border);
+	}
+	.step-n {
+		display: grid;
+		place-items: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		border: 1px solid var(--accent);
+		border-radius: 50%;
+		color: var(--accent);
+		font-weight: 500;
+		font-size: 1rem;
+	}
+	.steps h3 { font-size: var(--step-1); line-height: 1.3; margin-top: 0.35rem; }
+	.steps p { margin-top: var(--space-2xs); color: var(--muted); max-width: 52ch; }
+	.closing { background: var(--surface); border-top: 1px solid var(--hairline); padding-block: var(--space-2xl); }
+	.closing-inner { display: grid; gap: var(--space-l); justify-items: start; }
+	.closing h2 { max-width: 20ch; }
+	@media (min-width: 60rem) {
+		.col-a { grid-column: 1 / 5; }
+		.col-b { grid-column: 6 / -1; }
+		.closing-inner { grid-template-columns: 1fr auto; align-items: center; }
+	}
+</style>

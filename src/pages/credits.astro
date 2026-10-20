@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+
+const images = [
+	{ id: 'iss072e340644', label: 'ISS072-E-340644', title: "An orbital sunrise crowns Earth's horizon", date: 'Nov 18, 2024', where: 'Home' },
+	{ id: 'iss051e049985', label: 'ISS051-E-049985', title: 'NanoRacks CubeSat Deployment (cropped to the CubeSat)', date: 'May 26, 2017', where: 'About' },
+	{ id: 'iss040e062704', label: 'ISS040-E-062704', title: 'Earth Observation, night pass', date: 'Jul 14, 2014', where: 'Roadmap, 404' },
+];
+const type = [
+	{ name: 'Manrope', by: 'Mikhail Sharanda and Mirko Velimirović', license: 'SIL Open Font License 1.1', url: 'https://fonts.google.com/specimen/Manrope' },
+	{ name: 'JetBrains Mono', by: 'JetBrains', license: 'SIL Open Font License 1.1', url: 'https://www.jetbrains.com/lp/mono/' },
+];
+---
+<Base page="credits">
+	<PageHero title="Credits" lead="Image, font and icon credits." />
+
+	<section class="section" aria-labelledby="images">
+		<div class="container grid two-col">
+			<div class="col-a">
+				<h2 id="images">Images</h2>
+				<p class="note">Photos are from the NASA Image and Video Library. Credit: NASA. Their use here does not imply endorsement by NASA.</p>
+			</div>
+			<div class="col-b table-wrap">
+				<table>
+					<caption class="visually-hidden">Image credits</caption>
+					<thead><tr><th scope="col">NASA ID</th><th scope="col">Title</th><th scope="col">Date</th><th scope="col">Used on</th></tr></thead>
+					<tbody>
+						{images.map((im) => (
+							<tr>
+								<td class="mono"><a href={`https://images.nasa.gov/details/${im.id}`}>{im.label}</a></td>
+								<td>{im.title}<br /><span class="mono credit">Credit: NASA</span></td>
+								<td class="mono">{im.date}</td>
+								<td>{im.where}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="illustration">
+		<div class="container grid two-col">
+			<div class="col-a"><h2 id="illustration">Illustration</h2></div>
+			<div class="col-b prose"><p>The water-shielding drawing on the home page is a concept illustration made for this site. It is not a design.</p></div>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="type">
+		<div class="container grid two-col">
+			<div class="col-a"><h2 id="type">Type and icons</h2></div>
+			<ul class="col-b list" role="list">
+				{type.map((t) => <li><a href={t.url}>{t.name}</a> by {t.by}. {t.license}. Self-hosted.</li>)}
+				<li><a href="https://lucide.dev/">Lucide</a> icons. ISC License.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="code">
+		<div class="container grid two-col">
+			<div class="col-a"><h2 id="code">Site</h2></div>
+			<div class="col-b prose"><p>Built with <a href="https://astro.build/">Astro</a>. Source: <a href="https://github.com/AOSSI-org/aossi-site">github.com/AOSSI-org/aossi-site</a>. No analytics, no cookies.</p></div>
+		</div>
+	</section>
+</Base>
+
+<style>
+	.two-col { row-gap: var(--space-l); }
+	.col-a, .col-b { grid-column: 1 / -1; }
+	.note { margin-top: var(--space-m); color: var(--muted); max-width: 36ch; }
+	.table-wrap { overflow-x: auto; }
+	table { width: 100%; border-collapse: collapse; font-size: 1rem; }
+	th { text-align: left; font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 500; color: var(--muted); padding: 0 var(--space-m) var(--space-s) 0; border-bottom: 1px solid var(--field-border); }
+	td { padding: var(--space-m) var(--space-m) var(--space-m) 0; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+	td a { display: inline-block; min-height: 24px; }
+	td.mono { white-space: nowrap; }
+	.credit { color: var(--muted); font-size: 0.8125rem; }
+	.list { list-style: none; padding: 0; }
+	.list li { padding-block: var(--space-m); border-bottom: 1px solid var(--hairline); color: var(--muted); }
+	.list li:first-child { border-top: 1px solid var(--field-border); }
+	.col-b.prose p { color: var(--muted); }
+	@media (max-width: 40rem) {
+		thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+		table, tbody, tr, td { display: block; }
+		tr { padding-block: var(--space-m); border-bottom: 1px solid var(--hairline); }
+		td { border: 0; padding: 0.15rem 0; }
+	}
+	@media (min-width: 60rem) {
+		.col-a { grid-column: 1 / 5; }
+		.col-b { grid-column: 5 / -1; }
+	}
+</style>

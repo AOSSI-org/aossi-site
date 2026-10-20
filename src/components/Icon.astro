@@ -1,0 +1,27 @@
+---
+// Inline Lucide icon (ISC license). Decorative by default.
+import fs from 'node:fs';
+import { createRequire } from 'node:module';
+interface Props { name: string; class?: string; label?: string }
+const { name, class: cls, label } = Astro.props;
+const require = createRequire(import.meta.url);
+const raw = fs.readFileSync(require.resolve(`lucide-static/icons/${name}.svg`), 'utf8');
+const inner = raw.replace(/<!--.*?-->/s, '').replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
+---
+<svg
+	class:list={['icon', cls]}
+	xmlns="http://www.w3.org/2000/svg"
+	width="24"
+	height="24"
+	viewBox="0 0 24 24"
+	fill="none"
+	stroke="currentColor"
+	stroke-width="2"
+	stroke-linecap="round"
+	stroke-linejoin="round"
+	aria-hidden={label ? undefined : 'true'}
+	role={label ? 'img' : undefined}
+	aria-label={label}
+	focusable="false"
+	set:html={inner}
+/>

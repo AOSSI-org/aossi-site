@@ -1,0 +1,55 @@
+---
+// Authored concept illustration of the proposed experiment: two dose readings,
+// one behind a water jacket and one behind aluminum, side by side. Not a design.
+---
+<figure class="shield">
+	<svg viewBox="0 0 560 360" role="img" aria-labelledby="shield-title shield-desc" xmlns="http://www.w3.org/2000/svg">
+		<title id="shield-title">Concept illustration of the water-shielding experiment</title>
+		<desc id="shield-desc">Radiation arrives from above. On the left it passes through a water jacket, on the right through aluminum, and a dose reading is taken behind each, side by side.</desc>
+		<defs>
+			<pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+				<path d="M20 0H0V20" fill="none" stroke="#2a2e37" stroke-width="1" />
+			</pattern>
+			<marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+				<path d="M0 0L10 5L0 10z" fill="#ff7a3d" />
+			</marker>
+		</defs>
+		<rect width="560" height="360" fill="#15171c" />
+		<rect width="560" height="360" fill="url(#grid)" />
+		<g stroke="#ff7a3d" stroke-width="2" marker-end="url(#arrow)" class="rays">
+			<line x1="110" y1="20" x2="110" y2="104" />
+			<line x1="170" y1="20" x2="170" y2="104" />
+			<line x1="230" y1="20" x2="230" y2="104" />
+			<line x1="330" y1="20" x2="330" y2="104" />
+			<line x1="390" y1="20" x2="390" y2="104" />
+			<line x1="450" y1="20" x2="450" y2="104" />
+		</g>
+		<rect x="70" y="116" width="200" height="56" rx="2" fill="#2b4f7a" stroke="#8fb4e8" stroke-width="2" />
+		<path d="M78 136q12-8 24 0t24 0t24 0t24 0t24 0t24 0t24 0t8 0" fill="none" stroke="#8fb4e8" stroke-width="1.5" opacity="0.8" />
+		<path d="M78 152q12-8 24 0t24 0t24 0t24 0t24 0t24 0t24 0t8 0" fill="none" stroke="#8fb4e8" stroke-width="1.5" opacity="0.5" />
+		<rect x="290" y="116" width="200" height="56" rx="2" fill="#3a3f49" stroke="#a9adb6" stroke-width="2" />
+		<g stroke="#a9adb6" stroke-width="1" opacity="0.5">
+			<line x1="300" y1="130" x2="480" y2="130" /><line x1="300" y1="144" x2="480" y2="144" /><line x1="300" y1="158" x2="480" y2="158" />
+		</g>
+		<rect x="140" y="210" width="60" height="44" rx="2" fill="#1d2027" stroke="#f3f2ee" stroke-width="2" />
+		<circle cx="170" cy="232" r="8" fill="none" stroke="#ff7a3d" stroke-width="2" />
+		<rect x="360" y="210" width="60" height="44" rx="2" fill="#1d2027" stroke="#f3f2ee" stroke-width="2" />
+		<circle cx="390" cy="232" r="8" fill="none" stroke="#ff7a3d" stroke-width="2" />
+		<line x1="280" y1="196" x2="280" y2="300" stroke="#6b7079" stroke-width="1" stroke-dasharray="4 4" />
+		<g font-family="JetBrains Mono, ui-monospace, monospace" font-size="15" fill="#f3f2ee" text-anchor="middle">
+			<text x="170" y="290">Water jacket</text>
+			<text x="390" y="290">Aluminum</text>
+		</g>
+		<g font-family="JetBrains Mono, ui-monospace, monospace" font-size="13" fill="#a9adb6" text-anchor="middle">
+			<text x="170" y="312">dose</text>
+			<text x="390" y="312">dose</text>
+		</g>
+	</svg>
+	<figcaption class="mono">Concept illustration</figcaption>
+</figure>
+
+<style>
+	.shield { margin: 0; }
+	.shield svg { width: 100%; height: auto; border: 1px solid var(--hairline); border-radius: var(--radius); }
+	.shield figcaption { margin-top: var(--space-s); color: var(--muted); }
+</style>

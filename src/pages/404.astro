@@ -1,0 +1,44 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import nightPass from '../assets/night-pass.jpg';
+---
+<Base page="notfound">
+	<section class="lost">
+		<div class="container lost-grid">
+			<div class="lost-text">
+				<p class="mono code">404</p>
+				<h1>Lost signal</h1>
+				<p class="lead">This page isn't here. It may have moved, or the link may be wrong.</p>
+				<div class="btn-row">
+					<a class="btn btn-primary" href="/">Back to home <Icon name="arrow-right" /></a>
+					<a class="btn btn-secondary" href="/roadmap/">See the roadmap</a>
+				</div>
+			</div>
+			<figure class="photo">
+				<Picture
+					src={nightPass}
+					alt="The space station's robotic arm and an orange solar array over a cloud-covered Earth on a night pass."
+					widths={[400, 640, 900]}
+					sizes="(min-width: 60rem) 40vw, 100vw"
+					formats={['avif', 'webp']}
+					fallbackFormat="jpg"
+					loading="eager"
+					decoding="async"
+					quality={60}
+				/>
+				<figcaption>A night pass from the International Space Station · ISS040-E-062704 · Credit: NASA</figcaption>
+			</figure>
+		</div>
+	</section>
+</Base>
+
+<style>
+	.lost { padding-block: var(--space-2xl); }
+	.lost-grid { display: grid; gap: var(--space-xl); align-items: center; }
+	.lost-text > * + * { margin-top: var(--space-l); }
+	.lost h1 { margin-top: var(--space-xs); }
+	.code { color: var(--accent); font-size: 1rem; }
+	@media (min-width: 60rem) { .lost-grid { grid-template-columns: 6fr 6fr; gap: var(--space-2xl); } }
+</style>

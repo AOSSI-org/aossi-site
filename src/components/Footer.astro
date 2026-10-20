@@ -1,0 +1,50 @@
+---
+import { NAV, BLOG_URL, GITHUB_URL, LAST_UPDATED } from '../consts';
+const iso = LAST_UPDATED.toISOString().slice(0, 10);
+const human = LAST_UPDATED.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'America/New_York' });
+---
+<footer class="site-footer">
+	<div class="container footer-grid">
+		<p class="footer-line">AOSSI is a venture of Regardless Industries (in formation). Its designs will be published under open licenses.</p>
+		<nav aria-label="Footer">
+			<ul role="list">
+				<li><a href="/">Home</a></li>
+				{NAV.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+				<li><a href={BLOG_URL}>Blog</a></li>
+				<li><a href="/credits/">Credits</a></li>
+				<li><a href={GITHUB_URL}>GitHub</a></li>
+			</ul>
+		</nav>
+		<p class="mono updated">Last updated <time datetime={iso}>{human}</time></p>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		margin-top: auto;
+		background: var(--surface);
+		border-top: 1px solid var(--hairline);
+		padding-block: var(--space-xl) var(--space-l);
+	}
+	.footer-grid { display: grid; gap: var(--space-l); grid-template-columns: minmax(0, 1fr); }
+	.footer-line { color: var(--text); max-width: 52ch; font-size: 1rem; }
+	ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0 var(--space-2xs); margin-inline: -0.75rem; }
+	a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+		padding-inline: 0.75rem;
+		color: var(--muted);
+		font-size: 1rem;
+		font-weight: 600;
+		text-decoration: none;
+		border-radius: var(--radius);
+	}
+	a:hover { color: var(--text); text-decoration: underline; text-decoration-color: var(--accent); }
+	a:active { color: var(--accent); }
+	.updated { color: var(--muted); }
+	@media (min-width: 60rem) {
+		.footer-grid { grid-template-columns: 1fr auto; align-items: start; }
+		.updated { grid-column: 1 / -1; }
+	}
+</style>

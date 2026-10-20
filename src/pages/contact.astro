@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import { CONTACT_URL } from '../consts';
+// No AOSSI email address is published yet. Until one is, this links to the
+// working form on aossi.org. Swap CONTACT_URL for a mailto: link when ready.
+---
+<Base page="contact">
+	<PageHero title="Talk to AOSSI." lead="Contributors, sponsors, press. Also anyone with a better idea, or proof AOSSI is wrong.">
+		<div class="btn-row contact-cta">
+			<a class="btn btn-primary" href={CONTACT_URL}>Contact AOSSI <Icon name="arrow-up-right" /><span class="visually-hidden"> (form on aossi.org)</span></a>
+		</div>
+	</PageHero>
+</Base>
+
+<style>
+	.contact-cta { margin-top: var(--space-xl); }
+</style>

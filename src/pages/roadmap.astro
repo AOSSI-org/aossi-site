@@ -1,0 +1,99 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import nightPass from '../assets/night-pass.jpg';
+
+type Status = 'in-progress' | 'not-started' | 'proposed' | 'research';
+const items: { when: string; datetime?: string; text: string; status: Status; label: string }[] = [
+	{ when: 'Oct 2026', datetime: '2026-10', text: 'Formation and contributor documents drafted. Attorney review is next.', status: 'in-progress', label: 'In progress' },
+	{ when: 'Next', text: 'Form the parent company.', status: 'in-progress', label: 'In progress' },
+	{ when: 'Next', text: 'Publish the first open repository, with license, contributing guide and contributor terms.', status: 'not-started', label: 'Not started' },
+	{ when: 'Next', text: 'Scope the water-shielding CubeSat experiment.', status: 'proposed', label: 'Proposed' },
+	{ when: 'Next', text: 'Define the first product line. Sign the first contractor agreement.', status: 'not-started', label: 'Not started' },
+	{ when: 'Next', text: 'Open acme.academy.', status: 'not-started', label: 'Not started' },
+	{ when: 'Long term', text: 'Habitat tracks under study. Earth caverns, lunar tunnels with spin rings, captured asteroids, free-flying cylinders.', status: 'research', label: 'Research' },
+];
+---
+<Base page="roadmap">
+	<PageHero title="Roadmap" lead="Dates go up when they're real. Not before.">
+		<figure class="photo" slot="media">
+			<Picture
+				src={nightPass}
+				alt="The space station's robotic arm and an orange solar array over a cloud-covered Earth on a night pass, with a thin band of airglow on the horizon."
+				widths={[400, 640, 900]}
+				sizes="(min-width: 60rem) 34vw, 100vw"
+				formats={['avif', 'webp']}
+					fallbackFormat="jpg"
+				loading="eager"
+				fetchpriority="high"
+				decoding="async"
+				quality={60}
+			/>
+			<figcaption>A night pass from the International Space Station · ISS040-E-062704 · Credit: NASA</figcaption>
+		</figure>
+	</PageHero>
+
+	<section class="section" aria-label="Roadmap items">
+		<div class="container">
+			<ol class="timeline" role="list">
+				{items.map((it) => (
+					<li data-status={it.status}>
+						<p class="when mono">{it.datetime ? <time datetime={it.datetime}>{it.when}</time> : it.when}<span class="visually-hidden">:</span></p>
+						<div class="what">
+							<p>{it.text}</p>
+							<span class="chip" data-status={it.status}><span class="visually-hidden">(</span>{it.label}<span class="visually-hidden">)</span></span>
+						</div>
+					</li>
+				))}
+			</ol>
+		</div>
+	</section>
+
+	<CtaBand heading="Build space hardware in the open. Paid only from net revenue, if it earns.">
+		<a class="btn btn-primary" href="/sponsor/">Sponsor</a>
+		<a class="btn btn-secondary" href="/contribute/">Contribute</a>
+	</CtaBand>
+</Base>
+
+<style>
+	.timeline { list-style: none; padding: 0; }
+	.timeline li {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--space-xs);
+		position: relative;
+		padding: 0 0 var(--space-xl) 2rem;
+		border-left: 1px solid var(--field-border);
+	}
+	.timeline li:last-child { border-left-color: transparent; padding-bottom: 0; }
+	.timeline li::before {
+		content: '';
+		position: absolute;
+		left: -6px;
+		top: 0.45rem;
+		width: 11px;
+		height: 11px;
+		border-radius: 50%;
+		background: var(--ink);
+		border: 2px solid var(--muted);
+	}
+	.timeline li[data-status='in-progress']::before { border-color: var(--accent); background: var(--accent); }
+	.timeline li[data-status='proposed']::before { border-color: var(--sky); }
+	.timeline li[data-status='research']::before { border-color: var(--ok); border-style: dashed; }
+	.when { color: var(--muted); font-weight: 500; }
+	li[data-status='in-progress'] .when { color: var(--accent); }
+	.what { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-xs) var(--space-m); }
+	.what p { font-size: var(--step-1); font-weight: 500; max-width: 52ch; }
+	@media (min-width: 48rem) {
+		.timeline li { grid-template-columns: 8rem 1fr; gap: var(--space-l); padding-left: 2.25rem; }
+	}
+	@media (min-width: 60rem) {
+		.timeline li { grid-template-columns: 9rem 1fr; }
+		.what { display: grid; grid-template-columns: minmax(0, 1fr) 10rem; gap: var(--space-xl); }
+		.what .chip { justify-self: end; }
+		.timeline li + li { padding-top: var(--space-xs); }
+		.timeline li:not(:last-child) .what { padding-bottom: var(--space-l); border-bottom: 1px solid var(--hairline); }
+	}
+</style>

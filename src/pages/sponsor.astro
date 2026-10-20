@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+---
+<Base page="sponsor">
+	<PageHero title="Fund open space hardware." lead="Your support will pay for open designs anyone can use." />
+
+	<section class="section" aria-labelledby="ways">
+		<div class="container grid two-col">
+			<div class="col-a"><h2 id="ways">Ways to support</h2></div>
+			<dl class="ways col-b">
+				<div>
+					<dt>Sponsor a project<span class="colon">:</span></dt>
+					<dd>Pick one open project and back it. The proposed water-shielding CubeSat experiment, for example.</dd>
+				</div>
+				<div>
+					<dt>Tips<span class="colon">:</span></dt>
+					<dd>Online tips open once the company is formed. Until then, use the <a href="/contact/">contact page</a>.</dd>
+				</div>
+			</dl>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="fine-print">
+		<div class="container grid two-col">
+			<div class="col-a"><h2 id="fine-print" class="fine-head">THE FINE PRINT, UP FRONT</h2></div>
+			<div class="col-b">
+				<p class="callout">AOSSI is part of a for-profit company. Tips and sponsorships are not tax-deductible. Sponsors get no ownership, no profit share and no control. Tips are final once given.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="closing">
+		<div class="container closing-inner">
+			<a class="btn btn-primary" href="/contact/">Ask about sponsoring <Icon name="arrow-right" /></a>
+		</div>
+	</section>
+</Base>
+
+<style>
+	.two-col { row-gap: var(--space-l); }
+	.col-a, .col-b { grid-column: 1 / -1; }
+	.ways div { padding-block: var(--space-l); border-bottom: 1px solid var(--hairline); }
+	.ways div:first-child { border-top: 1px solid var(--field-border); }
+	.ways dt { font-size: var(--step-2); font-weight: 700; letter-spacing: -0.015em; }
+	.ways .colon { color: var(--muted); }
+	.ways dd { margin: var(--space-2xs) 0 0; color: var(--muted); max-width: 56ch; }
+	.fine-head { font-family: var(--font-mono); font-size: 1rem; font-weight: 500; letter-spacing: 0.04em; color: var(--accent); }
+	.callout { font-size: var(--step-1); line-height: 1.55; }
+	.closing { background: var(--surface); border-top: 1px solid var(--hairline); padding-block: var(--space-xl); }
+	@media (min-width: 60rem) {
+		.col-a { grid-column: 1 / 5; }
+		.col-b { grid-column: 6 / -1; }
+	}
+</style>
