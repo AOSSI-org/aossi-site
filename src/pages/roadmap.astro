@@ -3,7 +3,7 @@ import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaBand from '../components/CtaBand.astro';
-import nightPass from '../assets/night-pass.jpg';
+import nightPass from '../assets/night-sky-iss052e004913.jpg';
 
 type Status = 'in-progress' | 'not-started' | 'proposed' | 'research';
 const items: { when: string; datetime?: string; text: string; status: Status; label: string }[] = [
@@ -21,7 +21,7 @@ const items: { when: string; datetime?: string; text: string; status: Status; la
 		<figure class="photo" slot="media">
 			<Picture
 				src={nightPass}
-				alt="The space station's robotic arm and an orange solar array over a cloud-covered Earth on a night pass, with a thin band of airglow on the horizon."
+				alt="Earth observation taken by the Expedition 52 crew: the space station's solar arrays over Earth at night, under a starry sky."
 				widths={[400, 640, 900]}
 				sizes="(min-width: 60rem) 34vw, 100vw"
 				formats={['avif', 'webp']}
@@ -31,7 +31,7 @@ const items: { when: string; datetime?: string; text: string; status: Status; la
 				decoding="async"
 				quality={60}
 			/>
-			<figcaption>A night pass from the International Space Station · ISS040-E-062704 · Credit: NASA</figcaption>
+			<figcaption>Night sky from the International Space Station · ISS052-E-004913 · Credit: NASA</figcaption>
 		</figure>
 	</PageHero>
 

@@ -2,7 +2,7 @@
 import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import nightPass from '../assets/night-pass.jpg';
+import nightPass from '../assets/night-sky-iss052e004913.jpg';
 ---
 <Base page="notfound">
 	<section class="lost">
@@ -19,7 +19,7 @@ import nightPass from '../assets/night-pass.jpg';
 			<figure class="photo">
 				<Picture
 					src={nightPass}
-					alt="The space station's robotic arm and an orange solar array over a cloud-covered Earth on a night pass."
+					alt="Earth observation taken by the Expedition 52 crew: the space station's solar arrays over Earth at night, under a starry sky."
 					widths={[400, 640, 900]}
 					sizes="(min-width: 60rem) 40vw, 100vw"
 					formats={['avif', 'webp']}
@@ -28,7 +28,7 @@ import nightPass from '../assets/night-pass.jpg';
 					decoding="async"
 					quality={60}
 				/>
-				<figcaption>A night pass from the International Space Station · ISS040-E-062704 · Credit: NASA</figcaption>
+				<figcaption>Night sky from the International Space Station · ISS052-E-004913 · Credit: NASA</figcaption>
 			</figure>
 		</div>
 	</section>
